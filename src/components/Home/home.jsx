@@ -4,11 +4,41 @@ import { addResidents } from "../../Redux/Residents/action.js";
 import { sortAsc ,  sortDsc } from "../../Redux/Flats/action.js";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import Table from "react-bootstrap/Table";
+// import Table from "react-bootstrap/Table";
 import Button from "@mui/material/Button";
 import CircularIndeterminate from "./spinners";
 import { Navigate } from "react-router-dom";
 import Pagination from '@mui/material/Pagination';
+
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}));
+
 
 export const Home = () => {
   const { flats } = useSelector((store) => store.flats);
@@ -87,8 +117,8 @@ export const Home = () => {
             margin: "2% auto",
             height: "35px",
             border: "1px solid lightblue",
-            backgroundColor: "blue",
-            color: "white",
+            backgroundColor: "#616161",
+            color: "black",
             fontWeight: "600",
             borderRadius: "6px",
             padding: "5px",
@@ -113,8 +143,8 @@ export const Home = () => {
             margin: "2% auto",
             height: "35px",
             border: "1px solid lightblue",
-            backgroundColor: "blue",
-            color: "white",
+            backgroundColor: "#616161",
+            color: "black",
             fontWeight: "600",
             borderRadius: "6px",
             padding: "5px",
@@ -134,85 +164,85 @@ export const Home = () => {
           <option value="des">high to low</option>
         </select>
       </div>
-      <Table
-        striped
-        bordered
-        hover
-        variant="dark"
-        style={{ width: "80%", margin: "0.5% auto"}}
-      >
-        <thead>
-          <tr>
-            <th>#ID</th>
-            <th>Flat Name</th>
-            <th>Total No of Residents</th>
-            <th>Flat No</th>
-            <th>Block Name</th>
-            <th>Resident Type</th>
-            <th>Flat Image</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody >
+      <TableContainer component={Paper} color="white">
+      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <TableHead>
+          <TableRow>
+            <StyledTableCell>#ID</StyledTableCell>
+            <StyledTableCell>Flat Name</StyledTableCell>
+            <StyledTableCell>Total No of Residents</StyledTableCell>
+            <StyledTableCell>Flat No</StyledTableCell>
+            <StyledTableCell>Block Name</StyledTableCell>
+            <StyledTableCell>Resident Type</StyledTableCell>
+            <StyledTableCell>Flat Image</StyledTableCell>
+            <StyledTableCell>Edit</StyledTableCell>
+            <StyledTableCell>Delete</StyledTableCell> 
+          </TableRow>
+        </TableHead>
+        <TableBody>
           {flatData.map((e) => (
-            <tr key={e._id}>
-              <td>
+            <StyledTableRow key={e._id}>
+              <StyledTableCell component="th" scope="row">
                 <Link
-                  style={{ color: "white", textDecoration: "none" }}
+                  style={{ color: "black", textDecoration: "none" }}
                   to={`/residents/${e._id}/`}
                 >
                   {e._id}
                 </Link>
-              </td>
-              <td>
+                </StyledTableCell>
+              <StyledTableCell align="center">
                 <Link
-                  style={{ color: "white", textDecoration: "none" }}
+                  style={{ color: "black", textDecoration: "none" }}
                   to={`/residents/${e._id}/`}
                 >
                   {e.flat_name}
                 </Link>
-              </td>
-              <td>
+              </StyledTableCell>
+
+              <StyledTableCell align="center">
                 <Link
-                  style={{ color: "white", textDecoration: "none" }}
+                  style={{ color: "black", textDecoration: "none" }}
                   to={`/residents/${e._id}/`}
                 >
                   {e.total_residents}
                 </Link>
-              </td>
-              <td>
+              </StyledTableCell>
+
+              <StyledTableCell align="center">
                 <Link
-                  style={{ color: "white", textDecoration: "none" }}
+                  style={{ color: "black", textDecoration: "none" }}
                   to={`/residents/${e._id}/`}
                 >
                   {e.flat_no}
                 </Link>
-              </td>
-              <td>
+              </StyledTableCell>
+
+              <StyledTableCell align="center">
                 <Link
-                  style={{ color: "white", textDecoration: "none" }}
+                  style={{ color: "black", textDecoration: "none" }}
                   to={`/residents/${e._id}/`}
                 >
                   {e.block_name}
                 </Link>
-              </td>
-              <td>
+              </StyledTableCell>
+
+              <StyledTableCell align="center">
                 <Link
-                  style={{ color: "white", textDecoration: "none" }}
+                  style={{ color: "black", textDecoration: "none" }}
                   to={`/residents/${e._id}/`}
                 >
                   {e.resident_type}
                 </Link>
-              </td>
-              <td>
+              </StyledTableCell>
+
+              <StyledTableCell align="left">
                 <Link
-                  style={{ color: "white", textDecoration: "none" }}
+                  style={{ color: "black", textDecoration: "none" }}
                   to={`/residents/${e._id}/`}
                 >
                   <img
                     style={{
-                      width: "200px",
+                      width: "150px",
                       height: "100px",
                       objectFit: "cover",
                     }}
@@ -220,8 +250,9 @@ export const Home = () => {
                     alt=""
                   />
                 </Link>
-              </td>
-              <td>
+              </StyledTableCell>
+
+              <StyledTableCell align="center">
                 <Button
                   style={{
                     backgroundColor: "green",
@@ -231,8 +262,9 @@ export const Home = () => {
                 >
                   Edit
                 </Button>
-              </td>
-              <td>
+              </StyledTableCell>
+
+              <StyledTableCell align="center">
                 <Button
                   style={{
                     backgroundColor: "red",
@@ -243,11 +275,13 @@ export const Home = () => {
                 >
                   Delete
                 </Button>
-              </td>
-            </tr>
+              </StyledTableCell>
+
+            </StyledTableRow>
           ))}
-        </tbody>
+        </TableBody>
       </Table>      
+      </TableContainer>
     </>
   );
 };
