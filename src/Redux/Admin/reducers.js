@@ -7,9 +7,8 @@ const initState = {
   isLogged: JSON.parse(localStorage.getItem("isLogged")) || false,
   adminData: JSON.parse(localStorage.getItem("admin")) || {},
 };
-/*
-[{"_id":"625beafadb4cc2680352d69d","user_name":"premkumar@gmail.com","password":"1225","__v":0}]
-*/
+
+
 // reducer function
 export const adminReducer = (store = initState, { type, payload }) => {
   switch (type) {

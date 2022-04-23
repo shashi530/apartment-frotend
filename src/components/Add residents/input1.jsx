@@ -20,7 +20,7 @@ export default function BasicTextFields() {
      }
 
      const handlePost = () => {
-        fetch("https://prem-deployment.herokuapp.com/residents/", {
+        fetch("https://apartmentsbackend.herokuapp.com/residents/", {
             method: "POST",
             body: JSON.stringify({...residentData}),
             headers: {
@@ -55,11 +55,3 @@ export default function BasicTextFields() {
     </>
   );
 }
-
-
-/*
-"name": "Premkumar Hulikoppe",
-        "gender": "male",
-        "age": 25,
-        "flat_id": "625beb39db4cc2680352d69f",
-*/

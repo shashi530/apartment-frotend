@@ -18,7 +18,7 @@ export default function BasicTextFields() {
     }
 
     const handlePost = () => {
-        fetch("https://prem-deployment.herokuapp.com/flats/", {
+        fetch("https://apartmentsbackend.herokuapp.com/flats/", {
           method: "POST",
           body: JSON.stringify({...flatData}),
           headers: {
@@ -58,13 +58,3 @@ export default function BasicTextFields() {
     </>
   );
 }
-
-
-/*
-flat_name": "happy",
-        "flat_img": "dddd",
-        "resident_type": "rent",
-        "total_residents": 52,
-        "flat_no": 51,
-        "block_name": "A",
-*/

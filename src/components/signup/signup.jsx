@@ -22,18 +22,6 @@ import CircularIndeterminate from "../Home/spinners"
 import {addAdmin} from "../../Redux/Admin/action.js"
 
 
-
-// const ExpandMore = styled((props) => {
-//   const { expand, ...other } = props;
-//   return <IconButton {...other} />;
-// })(({ theme, expand }) => ({
-//   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-//   marginLeft: 'auto',
-//   transition: theme.transitions.create('transform', {
-//     duration: theme.transitions.duration.shortest,
-//   }),
-// }));
-
 export default function Signup() {
   const [user, setuser] = useState({});
   const [show, setshow] = useState(false);
@@ -43,14 +31,13 @@ export default function Signup() {
   console.log(adminData);
 
   const getAdmins = () => {
-    fetch("https://prem-deployment.herokuapp.com/admin")
+    fetch("https://apartmentsbackend.herokuapp.com/admin")
     .then((res) => res.json())
     .then((data) => dispatch(addAdmin(data)));
   }
 
   useEffect(() => {
     getAdmins();
-  
   }, [])
   
 
@@ -74,7 +61,7 @@ export default function Signup() {
         alert("User has already Signedup") 
       }
       else {
-        fetch("https://prem-deployment.herokuapp.com/admin", {
+        fetch("https://apartmentsbackend.herokuapp.com/admin", {
           method: "POST",
           body: JSON.stringify({...user}),
           headers: {
