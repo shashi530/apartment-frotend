@@ -247,8 +247,7 @@ export const Home = () => {
             </tr>
           ))}
         </tbody>
-      </Table>
-      
+      </Table>      
     </>
   );
 };

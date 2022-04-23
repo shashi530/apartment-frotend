@@ -37,7 +37,7 @@ export default function Login() {
   const [admins, setadmins] = useState([]);
   const [user, setuser] = useState({});
   const dispatch = useDispatch();
-  const {isLogged} = useSelector((store) => store.admin);
+  let {isLogged} = useSelector((store) => store.admin);
    const [count, setcount] = useState(0);
 
 
